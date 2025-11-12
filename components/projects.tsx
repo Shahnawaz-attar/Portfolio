@@ -49,6 +49,7 @@ export function Projects() {
               Featured{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Projects</span>
             </h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-accent rounded-full mx-auto"></div>
             <p className="text-muted-foreground text-lg md:text-xl">Showcasing some of my best work</p>
           </div>
 
@@ -70,9 +71,13 @@ export function Projects() {
 
                 <div className="relative z-10 p-8 space-y-4 h-full flex flex-col">
                   <div className="flex gap-4 items-start">
-                    <span className="text-4xl">{project.icon}</span>
+                    <span className="text-4xl group-hover:scale-125 transition-transform duration-300">
+                      {project.icon}
+                    </span>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
+                      <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
                       <p className="text-muted-foreground leading-relaxed text-sm">{project.description}</p>
                     </div>
                   </div>
@@ -96,8 +101,10 @@ export function Projects() {
 
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       {project.highlights.slice(0, 3).map((h) => (
-                        <li key={h} className="flex items-start gap-2">
-                          <span className="text-accent font-bold">→</span>
+                        <li key={h} className="flex items-start gap-2 group/item">
+                          <span className="text-accent font-bold group-hover/item:scale-150 transition-transform">
+                            →
+                          </span>
                           <span>{h}</span>
                         </li>
                       ))}

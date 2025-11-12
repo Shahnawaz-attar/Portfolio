@@ -62,6 +62,7 @@ export function Experience() {
               Work{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Experience</span>
             </h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-accent rounded-full mx-auto"></div>
             <p className="text-muted-foreground text-lg md:text-xl">Building great products with amazing teams</p>
           </div>
 
@@ -84,9 +85,13 @@ export function Experience() {
                 <div className="relative z-10 space-y-4">
                   <div className="flex justify-between items-start gap-4 flex-col sm:flex-row">
                     <div className="flex gap-4 items-start flex-1">
-                      <div className="text-4xl mt-2">{exp.icon}</div>
+                      <div className="text-4xl mt-2 group-hover:scale-125 transition-transform duration-300">
+                        {exp.icon}
+                      </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-foreground">{exp.position}</h3>
+                        <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                          {exp.position}
+                        </h3>
                         <p className="text-primary font-bold text-lg">{exp.company}</p>
                       </div>
                     </div>

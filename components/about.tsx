@@ -24,6 +24,7 @@ export function About() {
             <h2 className="text-5xl md:text-6xl font-black">
               About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Me</span>
             </h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary to-accent rounded-full mx-auto"></div>
             <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
               Crafting elegant solutions with modern technologies
             </p>
@@ -38,8 +39,8 @@ export function About() {
               </p>
               <p className="text-muted-foreground leading-relaxed text-lg">
                 Skilled in frontend performance optimization, REST API development, and cloud deployments (AWS, Docker).
-                Strong leadership as a Technical Lead at HCL, mentoring teams, managing project timelines, and
-                delivering quality software.
+                <span className="text-primary font-semibold"> Strong leadership as a Technical Lead at HCL</span>,
+                mentoring teams, managing project timelines, and delivering quality software.
               </p>
               <p className="text-muted-foreground leading-relaxed text-lg">
                 Currently driving innovation and technical excellence across projects while leading cross-functional
@@ -47,10 +48,11 @@ export function About() {
               </p>
 
               <div className="flex gap-4 pt-6 flex-wrap">
-                {["Problem Solver", "Team Leader", "Tech Enthusiast"].map((skill) => (
+                {["Problem Solver", "Team Leader", "Tech Enthusiast"].map((skill, idx) => (
                   <div
                     key={skill}
-                    className="px-4 py-2 bg-primary/20 border border-primary/50 rounded-full text-primary font-semibold text-sm animate-pulse-glow"
+                    className="px-4 py-2 bg-primary/20 border border-primary/50 rounded-full text-primary font-semibold text-sm animate-pulse-glow hover:scale-110 transition-transform"
+                    style={{ animationDelay: `${idx * 100}ms` }}
                   >
                     {skill}
                   </div>

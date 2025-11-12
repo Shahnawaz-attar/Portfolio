@@ -31,13 +31,13 @@ export function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-blob opacity-40"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-blob opacity-60"></div>
         <div
-          className="absolute bottom-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-blob opacity-30"
+          className="absolute bottom-0 right-0 w-96 h-96 bg-accent/15 rounded-full blur-3xl animate-blob opacity-40"
           style={{ animationDelay: "2s" }}
         ></div>
         <div
-          className="absolute top-1/2 left-1/2 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-blob opacity-20"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-blob opacity-30"
           style={{ animationDelay: "4s" }}
         ></div>
 
@@ -47,13 +47,13 @@ export function Hero() {
       <div className="relative z-10 max-w-5xl mx-auto">
         <div className={`grid md:grid-cols-2 gap-12 items-center ${isLoaded ? "animate-fade-in" : "opacity-0"}`}>
           <div className="space-y-8 order-2 md:order-1">
-            <div className="inline-block">
+            <div className="inline-block animate-slide-up" style={{ animationDelay: "0.1s" }}>
               <span className="px-4 py-2 rounded-full bg-primary/20 border border-primary/50 text-primary text-sm font-bold animate-pulse-glow">
                 ✨ Welcome to my digital space
               </span>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 animate-slide-up" style={{ animationDelay: "0.2s" }}>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
                 <span className="block">Hi, I'm</span>
                 <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-glow text-5xl md:text-7xl">
@@ -65,15 +65,18 @@ export function Hero() {
               </p>
             </div>
 
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl">
+            <p
+              className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl animate-slide-up"
+              style={{ animationDelay: "0.3s" }}
+            >
               Building scalable web applications with React, Next.js, and Node.js. Currently leading teams at HCL with
               5+ years of proven expertise.
             </p>
 
-            <div className="flex gap-4 flex-wrap pt-4">
+            <div className="flex gap-4 flex-wrap pt-4 animate-slide-up" style={{ animationDelay: "0.4s" }}>
               <a
                 href="#projects"
-                className="group relative px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/50"
+                className="group relative px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-bold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/50"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <span className="relative flex items-center gap-2">
@@ -90,13 +93,13 @@ export function Hero() {
               </a>
               <a
                 href="#contact"
-                className="px-8 py-4 border-2 border-primary text-primary rounded-lg font-bold hover:bg-primary/10 transition-all duration-300 hover:scale-105"
+                className="px-8 py-4 border-2 border-primary text-primary rounded-xl font-bold hover:bg-primary/10 transition-all duration-300 hover:scale-105"
               >
                 Get in Touch
               </a>
             </div>
 
-            <div className="flex gap-4 pt-8">
+            <div className="flex gap-4 pt-8" style={{ animationDelay: "0.5s" }}>
               <a
                 href="https://linkedin.com/in/shahnawaz-attar"
                 target="_blank"
@@ -134,10 +137,14 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="order-1 md:order-2" id="hero-image-container">
+          <div
+            className="order-1 md:order-2 animate-slide-up"
+            style={{ animationDelay: "0.1s" }}
+            id="hero-image-container"
+          >
             <div className="relative w-full aspect-square perspective">
               <div
-                className="absolute inset-0 rounded-2xl border-2 border-primary/30 animate-spin-slow"
+                className="absolute inset-0 rounded-3xl border-2 border-primary/40 animate-spin-slow"
                 style={{
                   animationDuration: "20s",
                   transform: `perspective(1000px) rotateX(${mousePos.y}deg) rotateY(${mousePos.x}deg)`,
@@ -145,7 +152,7 @@ export function Hero() {
                 }}
               ></div>
               <div
-                className="absolute inset-4 rounded-2xl border-2 border-accent/20 animate-spin-slow"
+                className="absolute inset-4 rounded-3xl border-2 border-accent/25 animate-spin-slow"
                 style={{
                   animationDuration: "25s",
                   animationDirection: "reverse",
@@ -154,7 +161,7 @@ export function Hero() {
                 }}
               ></div>
               <div
-                className="absolute inset-8 rounded-2xl border-2 border-primary/10 animate-spin-slow"
+                className="absolute inset-8 rounded-3xl border-2 border-primary/15 animate-spin-slow"
                 style={{
                   animationDuration: "30s",
                   transform: `perspective(1000px) rotateX(${mousePos.y * 0.2}deg) rotateY(${mousePos.x * 0.2}deg)`,
@@ -162,7 +169,7 @@ export function Hero() {
                 }}
               ></div>
 
-              <div className="absolute inset-12 rounded-2xl overflow-hidden border-4 border-gradient-to-r from-primary via-accent to-primary shadow-2xl shadow-primary/50 animate-pulse-glow">
+              <div className="absolute inset-12 rounded-3xl overflow-hidden border-4 border-gradient-to-r from-primary via-accent to-primary shadow-2xl shadow-primary/50 animate-pulse-glow">
                 <Image
                   src="/profile.jpg"
                   alt="Shahnawaz Attar - Full Stack Developer"
