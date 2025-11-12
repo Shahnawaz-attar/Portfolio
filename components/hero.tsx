@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import { LinkedInIcon, GitHubIcon, EmailIcon, TwitterIcon } from "./social-icons"
 
 export function Hero() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -72,35 +73,64 @@ export function Hero() {
             <div className="flex gap-4 flex-wrap pt-4">
               <a
                 href="#projects"
-                className="px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/50 cursor-pointer"
+                className="group relative px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/50"
               >
-                View My Work
+                <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="relative flex items-center gap-2">
+                  View My Work
+                  <svg
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
               </a>
               <a
                 href="#contact"
-                className="px-8 py-4 border-2 border-primary text-primary rounded-lg font-bold hover:bg-primary/10 transition-all duration-300"
+                className="px-8 py-4 border-2 border-primary text-primary rounded-lg font-bold hover:bg-primary/10 transition-all duration-300 hover:scale-105"
               >
                 Get in Touch
               </a>
             </div>
 
-            <div className="flex gap-6 pt-8">
-              {[
-                { label: "LinkedIn", href: "https://linkedin.com", icon: "🔗" },
-                { label: "GitHub", href: "https://github.com", icon: "🚀" },
-                { label: "Email", href: "mailto:shahnawazattar55@gmail.com", icon: "✉️" },
-              ].map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-primary transition-all duration-300 font-semibold text-sm hover:scale-110"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={link.label}
-                >
-                  <span className="text-2xl">{link.icon}</span>
-                </a>
-              ))}
+            <div className="flex gap-4 pt-8">
+              <a
+                href="https://linkedin.com/in/shahnawaz-attar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 border border-primary/30 text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/50"
+                title="LinkedIn"
+              >
+                <LinkedInIcon />
+              </a>
+              <a
+                href="https://github.com/shahnawaz-attar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 border border-primary/30 text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/50"
+                title="GitHub"
+              >
+                <GitHubIcon />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 border border-accent/30 text-accent hover:bg-accent hover:text-black transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-accent/50"
+                title="Twitter"
+              >
+                <TwitterIcon />
+              </a>
+              <a
+                href="mailto:shahnawazattar55@gmail.com"
+                className="group flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 border border-primary/30 text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/50"
+                title="Email"
+              >
+                <EmailIcon />
+              </a>
             </div>
           </div>
 
