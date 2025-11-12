@@ -63,7 +63,7 @@ export function About() {
 
               <div className="relative h-full bg-gradient-to-br from-primary/20 to-accent/10 rounded-2xl overflow-hidden border-2 border-primary/50 shadow-2xl shadow-primary/30 group-hover:shadow-primary/50 transition-all duration-500 backdrop-blur-md">
                 <Image
-                  src="/profile.png"
+                  src="/profile.jpg"
                   alt="Shahnawaz Attar"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"

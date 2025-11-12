@@ -134,7 +134,7 @@ export function Hero() {
 
               <div className="absolute inset-12 rounded-2xl overflow-hidden border-4 border-gradient-to-r from-primary via-accent to-primary shadow-2xl shadow-primary/50 animate-pulse-glow">
                 <Image
-                  src="/profile.png"
+                  src="/profile.jpg"
                   alt="Shahnawaz Attar - Full Stack Developer"
                   fill
                   className="object-cover"
