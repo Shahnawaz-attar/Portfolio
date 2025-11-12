@@ -30,7 +30,6 @@ export function About() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Text content */}
             <div className="space-y-6 animate-slide-in-left">
               <p className="text-muted-foreground leading-relaxed text-lg">
                 Results-driven Full Stack Developer with 5+ years of experience in React.js, Next.js, Redux, Node.js,
@@ -59,23 +58,20 @@ export function About() {
               </div>
             </div>
 
-            {/* Image with effects */}
             <div className="relative h-[500px] animate-slide-in-right group">
-              {/* Animated background gradient */}
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 via-accent/20 to-primary/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-rotate-slow"></div>
 
-              {/* Image frame */}
-              <div className="relative h-full bg-gradient-to-br from-primary/20 to-accent/10 rounded-2xl overflow-hidden border-2 border-primary/50 shadow-2xl shadow-primary/30 group-hover:shadow-primary/50 transition-all duration-500">
+              <div className="relative h-full bg-gradient-to-br from-primary/20 to-accent/10 rounded-2xl overflow-hidden border-2 border-primary/50 shadow-2xl shadow-primary/30 group-hover:shadow-primary/50 transition-all duration-500 backdrop-blur-md">
                 <Image
                   src="/profile.png"
                   alt="Shahnawaz Attar"
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  quality={95}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
 
-              {/* Floating elements */}
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent/20 rounded-full blur-2xl animate-float"></div>
               <div
                 className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-2xl animate-float"

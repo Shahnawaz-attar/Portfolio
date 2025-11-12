@@ -4,6 +4,9 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
+import { SparklesCore } from "@/components/sparkles"
+import { MouseFollower } from "@/components/mouse-follower"
+
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
@@ -23,6 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`font-sans antialiased bg-background text-foreground`}>
+        <SparklesCore />
+        <MouseFollower />
         {children}
         <Analytics />
       </body>

@@ -5,9 +5,26 @@ import Image from "next/image"
 
 export function Hero() {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     setIsLoaded(true)
+  }, [])
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const container = document.getElementById("hero-image-container")
+      if (!container) return
+
+      const rect = container.getBoundingClientRect()
+      const x = (e.clientX - rect.left - rect.width / 2) / 20
+      const y = (e.clientY - rect.top - rect.height / 2) / 20
+
+      setMousePos({ x, y })
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [])
 
   return (
@@ -23,13 +40,11 @@ export function Hero() {
           style={{ animationDelay: "4s" }}
         ></div>
 
-        {/* Grid pattern overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(124,58,237,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto">
         <div className={`grid md:grid-cols-2 gap-12 items-center ${isLoaded ? "animate-fade-in" : "opacity-0"}`}>
-          {/* Left side - Text */}
           <div className="space-y-8 order-2 md:order-1">
             <div className="inline-block">
               <span className="px-4 py-2 rounded-full bg-primary/20 border border-primary/50 text-primary text-sm font-bold animate-pulse-glow">
@@ -89,24 +104,34 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right side - Image with crazy effects */}
-          <div className="order-1 md:order-2">
-            <div className="relative w-full aspect-square">
-              {/* Multiple rotating rings */}
+          <div className="order-1 md:order-2" id="hero-image-container">
+            <div className="relative w-full aspect-square perspective">
               <div
                 className="absolute inset-0 rounded-2xl border-2 border-primary/30 animate-spin-slow"
-                style={{ animationDuration: "20s" }}
+                style={{
+                  animationDuration: "20s",
+                  transform: `perspective(1000px) rotateX(${mousePos.y}deg) rotateY(${mousePos.x}deg)`,
+                  transition: "transform 0.1s ease-out",
+                }}
               ></div>
               <div
                 className="absolute inset-4 rounded-2xl border-2 border-accent/20 animate-spin-slow"
-                style={{ animationDuration: "25s", animationDirection: "reverse" }}
+                style={{
+                  animationDuration: "25s",
+                  animationDirection: "reverse",
+                  transform: `perspective(1000px) rotateX(${mousePos.y * 0.5}deg) rotateY(${mousePos.x * 0.5}deg)`,
+                  transition: "transform 0.1s ease-out",
+                }}
               ></div>
               <div
                 className="absolute inset-8 rounded-2xl border-2 border-primary/10 animate-spin-slow"
-                style={{ animationDuration: "30s" }}
+                style={{
+                  animationDuration: "30s",
+                  transform: `perspective(1000px) rotateX(${mousePos.y * 0.2}deg) rotateY(${mousePos.x * 0.2}deg)`,
+                  transition: "transform 0.1s ease-out",
+                }}
               ></div>
 
-              {/* Image container */}
               <div className="absolute inset-12 rounded-2xl overflow-hidden border-4 border-gradient-to-r from-primary via-accent to-primary shadow-2xl shadow-primary/50 animate-pulse-glow">
                 <Image
                   src="/profile.png"
@@ -114,10 +139,10 @@ export function Hero() {
                   fill
                   className="object-cover"
                   priority
+                  quality={95}
                 />
               </div>
 
-              {/* Floating elements around image */}
               <div className="absolute -top-6 -right-6 w-20 h-20 bg-accent/30 rounded-full blur-xl animate-float"></div>
               <div
                 className="absolute -bottom-6 -left-6 w-24 h-24 bg-primary/20 rounded-full blur-xl animate-float"
@@ -128,7 +153,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
         <div className="flex flex-col items-center gap-2">
           <span className="text-muted-foreground text-sm">Scroll down</span>

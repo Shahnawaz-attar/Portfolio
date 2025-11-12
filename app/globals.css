@@ -75,7 +75,6 @@
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -124,7 +123,18 @@
 }
 
 @layer utilities {
-  /* Added extreme animations for visual impact */
+  /* Added new crazy animations for next-level wow effect */
+  @keyframes sparkle-fade {
+    0% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0) translateY(-100px);
+    }
+  }
+
   @keyframes float {
     0%,
     100% {
@@ -295,5 +305,9 @@
 
   .animate-bounce-slow {
     animation: bounce-slow 3s ease-in-out infinite;
+  }
+
+  .animate-sparkle-fade {
+    animation: sparkle-fade 1s ease-out forwards;
   }
 }
