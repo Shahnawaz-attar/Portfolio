@@ -1,32 +1,42 @@
 "use client"
 
+import type React from "react"
+
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { LinkedInIcon, GitHubIcon, EmailIcon, TwitterIcon } from "./social-icons"
 
 export function Hero() {
   const [isLoaded, setIsLoaded] = useState(false)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [rotation3D, setRotation3D] = useState({ x: 0, y: 0 })
+  const [isHovering, setIsHovering] = useState(false)
 
   useEffect(() => {
     setIsLoaded(true)
   }, [])
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const container = document.getElementById("hero-image-container")
-      if (!container) return
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isHovering) return
 
-      const rect = container.getBoundingClientRect()
-      const x = (e.clientX - rect.left - rect.width / 2) / 20
-      const y = (e.clientY - rect.top - rect.height / 2) / 20
+    const container = e.currentTarget
+    const rect = container.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
 
-      setMousePos({ x, y })
-    }
+    const x = (e.clientY - centerY) / 50
+    const y = (e.clientX - centerX) / 50
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+    setRotation3D({ x, y })
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovering(false)
+    setRotation3D({ x: 0, y: 0 })
+  }
+
+  const handleMouseEnter = () => {
+    setIsHovering(true)
+  }
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 relative overflow-hidden">
@@ -141,49 +151,66 @@ export function Hero() {
             className="order-1 md:order-2 animate-slide-up"
             style={{ animationDelay: "0.1s" }}
             id="hero-image-container"
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            <div className="relative w-full aspect-square perspective">
+            <div className="relative w-full aspect-square" style={{ perspective: "1200px" }}>
               <div
-                className="absolute inset-0 rounded-3xl border-2 border-primary/40 animate-spin-slow"
+                className="relative w-full h-full"
                 style={{
-                  animationDuration: "20s",
-                  transform: `perspective(1000px) rotateX(${mousePos.y}deg) rotateY(${mousePos.x}deg)`,
-                  transition: "transform 0.1s ease-out",
+                  transformStyle: "preserve-3d",
+                  transform: `perspective(1200px) rotateX(${rotation3D.x}deg) rotateY(${rotation3D.y}deg)`,
+                  transition: "transform 0.2s ease-out",
                 }}
-              ></div>
-              <div
-                className="absolute inset-4 rounded-3xl border-2 border-accent/25 animate-spin-slow"
-                style={{
-                  animationDuration: "25s",
-                  animationDirection: "reverse",
-                  transform: `perspective(1000px) rotateX(${mousePos.y * 0.5}deg) rotateY(${mousePos.x * 0.5}deg)`,
-                  transition: "transform 0.1s ease-out",
-                }}
-              ></div>
-              <div
-                className="absolute inset-8 rounded-3xl border-2 border-primary/15 animate-spin-slow"
-                style={{
-                  animationDuration: "30s",
-                  transform: `perspective(1000px) rotateX(${mousePos.y * 0.2}deg) rotateY(${mousePos.x * 0.2}deg)`,
-                  transition: "transform 0.1s ease-out",
-                }}
-              ></div>
+              >
+                <div
+                  className="absolute inset-0 rounded-3xl border-2 border-primary/40 animate-spin-slow"
+                  style={{
+                    animationDuration: "20s",
+                  }}
+                ></div>
 
-              <div className="absolute inset-12 rounded-3xl overflow-hidden border-4 border-gradient-to-r from-primary via-accent to-primary shadow-2xl shadow-primary/50 animate-pulse-glow">
-                <Image
-                  src="/profile.jpg"
-                  alt="Shahnawaz Attar - Full Stack Developer"
-                  fill
-                  className="object-cover"
-                  priority
-                  quality={95}
-                />
+                <div
+                  className="absolute inset-4 rounded-3xl border-2 border-accent/25 animate-spin-slow"
+                  style={{
+                    animationDuration: "25s",
+                    animationDirection: "reverse",
+                  }}
+                ></div>
+
+                <div
+                  className="absolute inset-8 rounded-3xl border-2 border-primary/15 animate-spin-slow"
+                  style={{
+                    animationDuration: "30s",
+                  }}
+                ></div>
+
+                <div
+                  className="absolute inset-12 rounded-3xl overflow-hidden border-4 border-gradient-to-r from-primary via-accent to-primary shadow-2xl shadow-primary/30 animate-pulse-glow"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <Image
+                    src="/profile.jpg"
+                    alt="Shahnawaz Attar - Full Stack Developer"
+                    fill
+                    className="object-cover"
+                    priority
+                    quality={95}
+                  />
+                </div>
               </div>
 
-              <div className="absolute -top-6 -right-6 w-20 h-20 bg-accent/30 rounded-full blur-xl animate-float"></div>
               <div
-                className="absolute -bottom-6 -left-6 w-24 h-24 bg-primary/20 rounded-full blur-xl animate-float"
-                style={{ animationDelay: "1s" }}
+                className="absolute inset-0 -z-10 rounded-3xl blur-3xl opacity-50"
+                style={{
+                  background: `radial-gradient(circle at 50% 50%, 
+                    rgba(124, 58, 237, 0.2) 0%,
+                    transparent 100%
+                  )`,
+                }}
               ></div>
             </div>
           </div>
